@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -40,6 +40,12 @@ namespace Web
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //Cấu hình cho phép CORS
+            app.UseCors(x => x
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
