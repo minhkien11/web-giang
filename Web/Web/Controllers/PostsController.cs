@@ -41,6 +41,45 @@ namespace Web.Controllers
             return post;
         }
 
+        // GET: api/Posts/title
+        [HttpGet("{title}")]
+        public ActionResult<IEnumerable<Post>> GetPost(string title)
+        {
+            var post = _context.Posts.Where(c => c.Title.Contains(title)).ToList();
+            if (post.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return post;
+        }
+
+        // GET: api/Posts/Latest
+        [HttpGet("Latest")]
+        public ActionResult<IEnumerable<Post>> GetPost()
+        {
+            var lstpost = _context.Posts.OrderByDescending(c => c.CreatedDate).Take(5).ToList();
+            if (lstpost.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return lstpost;
+        }
+
+        // GET: api/Posts/page/1
+        [HttpGet("page/{page}")]
+        public ActionResult<IEnumerable<Post>> GetPosts(int page)
+        {
+            var lstpost = _context.Posts.Skip((page - 1) * 10).Take(10).ToList();
+            if (lstpost.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return lstpost;
+        }
+
         // PUT: api/Posts/5
         [HttpPut("{id}")]
         public ActionResult PutPost(int id, Post post)
@@ -75,7 +114,7 @@ namespace Web.Controllers
 
                 return CreatedAtAction("GetPost", new { id = oldpost.ID }, oldpost);
             }
-            
+
         }
 
         // POST: api/Posts

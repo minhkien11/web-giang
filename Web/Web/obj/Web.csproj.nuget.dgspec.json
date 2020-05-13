@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Project Giang\\Web\\Web\\Web.csproj": {}
+    "E:\\Project Giang\\web-giang\\Web\\Web\\Web.csproj": {}
   },
   "projects": {
-    "E:\\Project Giang\\Web\\Web\\Web.csproj": {
+    "E:\\Project Giang\\web-giang\\Web\\Web\\Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Project Giang\\Web\\Web\\Web.csproj",
+        "projectUniqueName": "E:\\Project Giang\\web-giang\\Web\\Web\\Web.csproj",
         "projectName": "Web",
-        "projectPath": "E:\\Project Giang\\Web\\Web\\Web.csproj",
+        "projectPath": "E:\\Project Giang\\web-giang\\Web\\Web\\Web.csproj",
         "packagesPath": "C:\\Users\\Nguyen Minh Kien\\.nuget\\packages\\",
-        "outputPath": "E:\\Project Giang\\Web\\Web\\obj\\",
+        "outputPath": "E:\\Project Giang\\web-giang\\Web\\Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -80,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
