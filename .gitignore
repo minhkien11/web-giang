@@ -132,3 +132,4 @@ Web/Web/bin/Debug/netcoreapp3.1/cs/Microsoft.CodeAnalysis.resources.dll
 Web/Web/bin/Debug/netcoreapp3.1/cs/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
 Web/Web/bin/Debug/netcoreapp3.1/cs/Microsoft.CodeAnalysis.CSharp.resources.dll
 Web/Web/bin/Debug/netcoreapp3.1/appsettings.json
+Web/Web/bin/Debug/netcoreapp3.1/appsettings.Development.json
