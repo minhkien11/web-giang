@@ -43,7 +43,7 @@ namespace Web.Controllers
 
         // GET: api/Posts/title
         [HttpPost("title")]
-        public ActionResult<IEnumerable<Post>> GetPost(string title)
+        public ActionResult<IEnumerable<Post>> GetPost([FromBody] string title)
         {
             var post = _context.Posts.Where(c => c.Title.Contains(title)).ToList();
             if (post.Count == 0)
