@@ -38,6 +38,9 @@ namespace Web.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UnsignedTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("UpdatedById")
                         .HasColumnType("int");
 

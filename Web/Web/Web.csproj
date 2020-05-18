@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Controllers\PostsController.cs~RFc141926.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Database\" />
   </ItemGroup>
 

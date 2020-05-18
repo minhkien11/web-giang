@@ -45,7 +45,8 @@ namespace Web.Controllers
         [HttpPost("title")]
         public ActionResult<IEnumerable<Post>> GetPost([FromBody] string title)
         {
-            var post = _context.Posts.Where(c => c.Title.Contains(title)).ToList();
+            var unsignedtitle = Util.ChuyenTiengVietKhongDau(title).ToLower();
+            var post = _context.Posts.Where(c => c.Title.Contains(title) || c.UnsignedTitle.Contains(unsignedtitle)).ToList();
             if (post.Count == 0)
             {
                 return NotFound();
@@ -93,6 +94,7 @@ namespace Web.Controllers
             else
             {
                 oldpost.Title = post.Title;
+                oldpost.UnsignedTitle = Util.ChuyenTiengVietKhongDau(post.Title).ToLower();
                 oldpost.Content = post.Content;
                 oldpost.UpdatedDate = DateTime.Now;
                 _context.Entry(oldpost).State = EntityState.Modified;
@@ -121,6 +123,7 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult<Post> PostPost(Post post)
         {
+            post.UnsignedTitle = Util.ChuyenTiengVietKhongDau(post.Title).ToLower();
             post.CreatedDate = DateTime.Now;
 
             _context.Posts.Add(post);

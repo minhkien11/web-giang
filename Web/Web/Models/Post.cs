@@ -9,6 +9,7 @@ namespace Web.Models
     {
         public int ID { get; set; }
         public string Title { get; set; }
+        public string UnsignedTitle { get; set; }
         public string Content { get; set; }
         public int CreatedById { get; set; }
         public DateTime CreatedDate { get; set; }
