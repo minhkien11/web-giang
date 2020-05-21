@@ -15,5 +15,6 @@ namespace Web.Models
         public DateTime CreatedDate { get; set; }
         public int UpdatedById { get; set; }
         public DateTime UpdatedDate { get; set; }
+        public string CoverImage { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -151,6 +152,30 @@ namespace Web.Controllers
         private bool PostExists(int id)
         {
             return _context.Posts.Any(e => e.ID == id);
+        }
+
+        [HttpPost("image")]
+        public ActionResult UploadImage()
+        {
+            string[] fileType = { "bmp", "jpg", "jpeg", "png" };
+
+            if (Request.Form.Files.Count == 0)
+                return NotFound();
+
+            foreach(var fileUpload in Request.Form.Files)
+            {
+                if (!fileType.Any(c => fileUpload.ContentType.Contains(c)))
+                    return Problem(
+                        title: "Không thành công",
+                        detail: "Định dạng file " + fileUpload.FileName + " không hợp lệ");
+
+                string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", fileUpload.FileName);
+                using (var fs = new FileStream(filePath, FileMode.Create))
+                {
+                    fileUpload.CopyTo(fs);
+                }
+            }
+            return Ok();
         }
     }
 }
