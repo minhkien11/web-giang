@@ -70,16 +70,23 @@ namespace Web.Controllers
         }
 
         // GET: api/Posts/page/1
-        [HttpGet("page/{page}")]
-        public ActionResult<IEnumerable<Post>> GetPosts(int page)
+        [HttpGet("page/{type}/{page}")]
+        public ActionResult<PaginationSet<Post>> GetPosts(int page, int  type)
         {
-            var lstpost = _context.Posts.Skip((page - 1) * 10).Take(10).ToList();
-            if (lstpost.Count == 0)
+            var lstPost = type == 0 ? _context.Posts : _context.Posts.Where(c => c.Type == type);
+            var result = new PaginationSet<Post>()
+            {
+                Page = page,
+                TotalPage = (int)Math.Ceiling((decimal)lstPost.Count() / 6),
+                Items = lstPost.Skip((page - 1) * 6).Take(6).ToList(),
+            };
+
+            if (result.Items.Count == 0)
             {
                 return NotFound();
             }
 
-            return lstpost;
+            return result;
         }
 
         // PUT: api/Posts/5
@@ -162,7 +169,7 @@ namespace Web.Controllers
             if (Request.Form.Files.Count == 0)
                 return NotFound();
 
-            foreach(var fileUpload in Request.Form.Files)
+            foreach (var fileUpload in Request.Form.Files)
             {
                 if (!fileType.Any(c => fileUpload.ContentType.Contains(c)))
                     return Problem(

@@ -41,13 +41,16 @@ namespace Web.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
                     b.Property<string>("UnsignedTitle")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UpdatedById")
+                    b.Property<int?>("UpdatedById")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdatedDate")
+                    b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");

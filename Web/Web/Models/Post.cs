@@ -11,10 +11,11 @@ namespace Web.Models
         public string Title { get; set; }
         public string UnsignedTitle { get; set; }
         public string Content { get; set; }
+        public int Type { get; set; }
         public int CreatedById { get; set; }
         public DateTime CreatedDate { get; set; }
-        public int UpdatedById { get; set; }
-        public DateTime UpdatedDate { get; set; }
+        public int? UpdatedById { get; set; }
+        public DateTime? UpdatedDate { get; set; }
         public string CoverImage { get; set; }
     }
 }
