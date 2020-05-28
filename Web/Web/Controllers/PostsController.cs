@@ -60,7 +60,7 @@ namespace Web.Controllers
         [HttpGet("Latest")]
         public ActionResult<IEnumerable<Post>> GetPost()
         {
-            var lstpost = _context.Posts.OrderByDescending(c => c.CreatedDate).Take(5).ToList();
+            var lstpost = _context.Posts.Where(c => c.Type == 1).OrderByDescending(c => c.CreatedDate).Take(5).ToList();
             if (lstpost.Count == 0)
             {
                 return NotFound();
