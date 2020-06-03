@@ -169,6 +169,10 @@ namespace Web.Controllers
             if (Request.Form.Files.Count == 0)
                 return NotFound();
 
+            string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "Images");
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+
             foreach (var fileUpload in Request.Form.Files)
             {
                 if (!fileType.Any(c => fileUpload.ContentType.Contains(c)))
@@ -176,12 +180,19 @@ namespace Web.Controllers
                         title: "Không thành công",
                         detail: "Định dạng file " + fileUpload.FileName + " không hợp lệ");
 
-                string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Images", fileUpload.FileName);
+                string filePath = Path.Combine(folderPath, fileUpload.FileName);
                 using (var fs = new FileStream(filePath, FileMode.Create))
                 {
                     fileUpload.CopyTo(fs);
                 }
+
+                Image img = new Image();
+                img.Name = fileUpload.FileName;
+                img.UploadedDate = DateTime.Now;
+                _context.Images.Add(img);
             }
+            _context.SaveChanges();
+
             return Ok();
         }
     }

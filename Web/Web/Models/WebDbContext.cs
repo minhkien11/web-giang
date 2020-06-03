@@ -13,5 +13,6 @@ namespace Web.Models
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Image> Images { get; set; }
     }
 }
