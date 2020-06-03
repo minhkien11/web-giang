@@ -173,6 +173,8 @@ namespace Web.Controllers
             if (!Directory.Exists(folderPath))
                 Directory.CreateDirectory(folderPath);
 
+            List<string> lstName = new List<string>();
+
             foreach (var fileUpload in Request.Form.Files)
             {
                 if (!fileType.Any(c => fileUpload.ContentType.Contains(c)))
@@ -190,10 +192,11 @@ namespace Web.Controllers
                 img.Name = fileUpload.FileName;
                 img.UploadedDate = DateTime.Now;
                 _context.Images.Add(img);
+                lstName.Add(filePath);
             }
             _context.SaveChanges();
 
-            return Ok();
+            return Content(string.Join('\n',lstName));
         }
     }
 }
