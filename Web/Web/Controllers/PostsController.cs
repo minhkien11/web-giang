@@ -89,6 +89,27 @@ namespace Web.Controllers
             return result;
         }
 
+        // GET: api/Posts/search/abc/1
+        [HttpGet("search/{keyword}/{page}")]
+        public ActionResult<PaginationSet<Post>> GetPosts(int page, string keyword)
+        {
+            var unsignedkeyword = Util.ChuyenTiengVietKhongDau(keyword).ToLower();
+            var lstPost = _context.Posts.Where(c => c.Title.Contains(keyword) || c.UnsignedTitle.Contains(unsignedkeyword)).ToList();
+            var result = new PaginationSet<Post>()
+            {
+                Page = page,
+                TotalPage = (int)Math.Ceiling((decimal)lstPost.Count() / 6),
+                Items = lstPost.Skip((page - 1) * 6).Take(6).ToList(),
+            };
+
+            if (result.Items.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return result;
+        }
+
         // PUT: api/Posts/5
         [HttpPut("{id}")]
         public ActionResult PutPost(Post post)
