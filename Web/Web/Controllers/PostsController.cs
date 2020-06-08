@@ -91,9 +91,9 @@ namespace Web.Controllers
 
         // PUT: api/Posts/5
         [HttpPut("{id}")]
-        public ActionResult PutPost(int id, Post post)
+        public ActionResult PutPost(Post post)
         {
-            var oldpost = _context.Posts.Find(id);
+            var oldpost = _context.Posts.Find(post.ID);
 
             if (oldpost == null)
             {
@@ -112,7 +112,7 @@ namespace Web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PostExists(id))
+                    if (!PostExists(post.ID))
                     {
                         return NotFound();
                     }
