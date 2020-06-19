@@ -29,7 +29,9 @@ namespace Web
         public void ConfigureServices(IServiceCollection services)
         {
             string rootPath = Directory.GetCurrentDirectory();
-            services.AddDbContext<WebDbContext>(c => c.UseSqlServer(Configuration.GetConnectionString("DefaultConnection").Replace("CONTENTROOTPATH", rootPath)));
+
+            //services.AddDbContext<WebDbContext>(c => c.UseSqlServer(Configuration.GetConnectionString("DefaultConnection").Replace("CONTENTROOTPATH", rootPath)));
+            services.AddDbContext<WebDbContext>(c => c.UseSqlServer("Server=tcp:web20200519210801dbserver.database.windows.net,1433;Initial Catalog=giang-demo-db;Persist Security Info=False;User ID=sayorui;Password=Gamoicho1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
             services.AddControllers();
         }
 
