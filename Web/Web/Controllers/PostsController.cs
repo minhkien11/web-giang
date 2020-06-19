@@ -111,7 +111,7 @@ namespace Web.Controllers
         }
 
         // PUT: api/Posts/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public ActionResult PutPost(Post post)
         {
             var oldpost = _context.Posts.Find(post.ID);
